@@ -38,15 +38,13 @@ return style;
 ////////////// STREET VIEW FUNCTION
 lotClick = function (feature, layer) {
 
-	layer.on('click', function (){
-		console.log(data);
+	layer.on(layer, function (){
 		console.log(feature.geometry);
 		var $content = $('<div></div>');
 		$content.text("<strong>" + feature.properties.address + "<br/" + "</strong>" + 
         "owner: " + "<strong>" + feature.properties.ownername + "</strong>");
         
         function getStreetView(latlng) {
-        	console.log(click);
         	console.log(lat, lng);
         		var lat = feature.geometry.coordinates[1];
                 var lng = feature.geometry.coordinates[0];
@@ -60,7 +58,7 @@ lotClick = function (feature, layer) {
                     $image.attr('src', streetviewUrl);
                     $content.append($image)                
                 }
-                getStreetView(lat, lng());
+                getStreetView(layer.lat, lng());
                 layer.bindPopup ($content.html()).openPopup();
             });  
       }
